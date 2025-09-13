@@ -5,8 +5,12 @@ services:
     build: ./backend/server
     ports:
       - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY=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
+    restart: always
 
   frontend:
     build: ./frontend
     ports:
       - "3000:80"
+    restart: always
