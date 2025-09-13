@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Q&A Application Design System */
+
+@layer base {
+  :root {
+    /* Dark-first modern design system */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Surface colors with depth */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --card-elevated: 240 5% 6%;
+
+    --popover: 240 5% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Modern gradient brand colors */
+    --primary: 250 100% 70%;
+    --primary-foreground: 240 10% 3.9%;
+    --primary-hover: 250 100% 65%;
+    --primary-glow: 250 100% 70%;
+
+    /* Warm accent colors */
+    --accent-orange: 25 95% 60%;
+    --accent-pink: 330 85% 70%;
+    --accent-cyan: 190 95% 70%;
+
+    /* Surface hierarchy */
+    --secondary: 240 4% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 5% 25.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 4% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Status colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Interactive elements */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 250 100% 70%;
+
+    /* Chat specific colors */
+    --chat-user: 250 100% 70%;
+    --chat-user-foreground: 240 10% 3.9%;
+    --chat-assistant: 240 4% 15.9%;
+    --chat-assistant-foreground: 0 0% 98%;
+
+    /* Modern gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(250 100% 70%), hsl(330 85% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(190 95% 70%), hsl(250 100% 70%));
+    --gradient-warm: linear-gradient(135deg, hsl(25 95% 60%), hsl(330 85% 70%));
+    --gradient-bg: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 5% 6%));
+    --gradient-card: linear-gradient(135deg, hsl(240 5% 6%) 0%, hsl(240 4% 9%) 100%);
+
+    /* Glass morphism */
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Shadows with glow effects */
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+    --shadow-glow-lg: 0 0 40px hsl(var(--primary) / 0.4);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 250 100% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 250 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: "cv11" 1, "ss01" 1;
+    background: var(--gradient-bg);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  /* Enhanced scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent-pink)));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(var(--primary-hover)), hsl(var(--accent-orange)));
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-lg {
+    box-shadow: var(--shadow-glow-lg);
+  }
+
+  /* Enhanced focus */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Message animations */
+  .message-slide-in {
+    animation: messageSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @keyframes messageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Pulse animation for typing */
+  .typing-indicator {
+    animation: typing 1.4s infinite ease-in-out;
+  }
+
+  @keyframes typing {
+    0%, 80%, 100% { opacity: 0.3; }
+    40% { opacity: 1; }
+  }
+}
