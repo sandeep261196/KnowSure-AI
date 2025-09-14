@@ -57,7 +57,7 @@ const ChatInterface = () => {
         content: m.text
       }));
       chatHistory.push({ role: 'user', content: currentInput });
-      const response = await fetch('/api/ask`, {
+      const response = await fetch(`/api/ask`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
