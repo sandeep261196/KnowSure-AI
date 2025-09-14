@@ -1,12 +1,9 @@
-# ------------------------
-# Build stage
-# ------------------------
-FROM node:18 AS build
+# Stage 1: Build the React app
+FROM --platform=linux/amd64 node:18 as build
 
-# Set working directory
 WORKDIR /app
 
-# Copy dependencies
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
@@ -15,22 +12,18 @@ RUN npm install
 # Copy all source code
 COPY . .
 
-# Build frontend (Vite)
+# Build the React app
 RUN npm run build
 
-# ------------------------
-# Serve stage
-# ------------------------
-FROM nginx:alpine
+# Stage 2: Serve with Nginx
+FROM --platform=linux/amd64 nginx:alpine
 
-# Copy custom nginx.conf (important: overrides default)
+# Copy custom Nginx config if you have one
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy build output to nginx html folder
+# Copy build output from previous stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose frontend port
 EXPOSE 80
 
-# Run nginx
 CMD ["nginx", "-g", "daemon off;"]
